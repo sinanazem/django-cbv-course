@@ -4,23 +4,32 @@
 {% block title %} Home {% endblock %}
 
 {% block content %}
-<div class="container mt-5 ">
-
-    <div class="row">
-
-        <div class="col-md-6">
+<div class="container mt-5 text-center">
     
-            <h3>Home Page</h3>
-            <p class="text-secondary"> Learning Django CBV course From <span class="text-warning"> Mongard </span></p>
-    
-        </div>
+    <h3>Home Page</h3>
+    <p class="text-secondary"> Learning Django CBV course From <span class="text-warning"> Mongard </span></p>
 
-        <div class="col-md-6">
-     
-        </div>
-
-    </div>
     <hr>
+
+
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Methods</th>
+      <th scope="col">Detail</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>View</td>
+      <td>setup, dispatch, http_method_not_allowed, options</td>
+      <td><a href="{%url 'home:mongard_view' %}"> detail </a></td>
+    </tr>
+  </tbody>
+</table>
 
 </div>
 
