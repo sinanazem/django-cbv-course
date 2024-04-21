@@ -4,14 +4,17 @@
 {% block title %} Home {% endblock %}
 
 {% block content %}
+
+<div class="container text-center mt-5">
 <form action="" method="post">
     {% csrf_token %}
 
-    <p> Are you sure delete {{object}} ??</p>
-    <input type="submit" value="delete">
+    <p> Are you sure delete <span class="text-warning"> {{object}} </span>?</p>
+    <input type="submit" value="delete" class="btn btn-danger">
 
 
 
 </form>
+</div>
 
 {% endblock %}

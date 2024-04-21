@@ -5,9 +5,21 @@
 
 {% block content %}
 
-<p> {{object.name}} </p>
-<p> {{object.owner}} </p>
-<p> {{object.year}} </p>
+<div class="container text-center mt-5 ">
+
+    <h3>{{object.name}} </h3>
+    <p class="text-secondary"> {{object.year}} </p>
+
+    <small class="text-secondary"> {{object.owner}} </small>
+    <br>
+
+    <small>{{car.id}}</small>
+
+
+
+
+</div>
+
 
 
 {% endblock %}

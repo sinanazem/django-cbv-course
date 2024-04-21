@@ -14,7 +14,9 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">Name</th>
+      <th scope="col">Update</th>
       <th scope="col">Delete</th>
+      
     </tr>
   </thead>
   <tbody>
@@ -22,8 +24,10 @@
     {% for car in cars %}
     <tr>
       <th scope="row">{{forloop.counter }}</th>
-      <td> <a href="{% url 'home:detail' car.id %}"> {{car.name}} </a> </td>
+      <td> <a href="{% url 'home:detail' car.id %}" class="fw-bold"> {{car.name}} </a> </td>
+      <td><a class="btn btn-success" href="{% url 'home:car_update' car.id %}"> Update</a></td>
       <td><a class="btn btn-danger" href="{% url 'home:car_delete' car.id %}"> Delete</a></td>
+      
     </tr>
     {% endfor %}
   </tbody>
