@@ -37,8 +37,13 @@
 
 <div class="container">
   {% for car in cars %}
-  <p> {{car.name }} </p>
+  <a href="{% url 'home:detail' car.id %}"> {{car.name }} </a>
   {% endfor %}
+</div>
+
+<div class="container">
+
+  <h3 class="text-warning" > {{username}} </h3>
 </div>
 
 
