@@ -8,44 +8,26 @@
     
     <h3>Home Page</h3>
     <p class="text-secondary"> Learning Django CBV course From <span class="text-warning"> Mongard </span></p>
-
     <hr>
-
-
     <table class="table">
   <thead>
     <tr>
       <th scope="col">#</th>
       <th scope="col">Name</th>
-      <th scope="col">Methods</th>
-      <th scope="col">Detail</th>
+      <th scope="col">Delete</th>
     </tr>
   </thead>
   <tbody>
+    
+    {% for car in cars %}
     <tr>
-      <th scope="row">1</th>
-      <td>View</td>
-      <td>setup, dispatch, http_method_not_allowed, options</td>
-      <td><a href="{%url 'home:mongard_view' %}"> detail </a></td>
+      <th scope="row">{{forloop.counter }}</th>
+      <td> <a href="{% url 'home:detail' car.id %}"> {{car.name}} </a> </td>
+      <td><a class="btn btn-danger" href="{% url 'home:car_delete' car.id %}"> Delete</a></td>
     </tr>
+    {% endfor %}
   </tbody>
 </table>
 
 </div>
-
-
-
-<div class="container">
-  {% for car in cars %}
-  <a href="{% url 'home:detail' car.id %}"> {{car.name }} </a>
-  {% endfor %}
-</div>
-
-<div class="container">
-
-  <h3 class="text-warning" > {{username}} </h3>
-</div>
-
-
-
 {% endblock %}

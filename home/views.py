@@ -4,8 +4,11 @@ from django.http import HttpRequest
 from django.http.response import HttpResponse as HttpResponse
 from django.shortcuts import render
 from django.views import View
-from django.views.generic import TemplateView, RedirectView, ListView, DetailView
+from django.views.generic import TemplateView, RedirectView, ListView, DetailView, FormView, CreateView, DeleteView
 from .models import Car
+from .forms import CarAddForm
+from django.urls import reverse_lazy
+from django.contrib import messages
 
 
 # class HomeView(View):
@@ -38,6 +41,39 @@ class HomeView(ListView):
 class HomeDetailView(DetailView):
     template_name = "home/detail.html"
     model = Car
+    
+# class CreateCarView(FormView):
+#     template_name = "home/create.html"
+#     form_class = CarAddForm
+#     success_url = reverse_lazy('home:home')
+    
+#     def form_valid(self, form):
+#         self._create_car(form.cleaned_data)
+#         messages.success(self.request, 'create car successfully', 'success')
+#         return super().form_valid(form)
+    
+#     def _create_car(self, data):
+#         Car.objects.create(name=data['name'], owner=data['owner'], year=data['year'])
+
+class DeleteCarView(DeleteView):
+    template_name = 'home/delete.html'
+    model = Car
+    success_url = reverse_lazy('home:home')
+    
+
+class CreateCarView(CreateView):
+    model = Car
+    fields = ('name', 'year')
+    template_name = "home/create.html"
+    success_url = reverse_lazy('home:home')
+    
+    def form_valid(self, form):
+        car = form.save(commit=False)
+        car.owner = self.request.user.username if self.request.user.username else "nothing"
+        car.save()
+        messages.success(self.request, 'create car successfully', 'success')
+        return super().form_valid(form)
+    
 
 
 class MongardView(View):
